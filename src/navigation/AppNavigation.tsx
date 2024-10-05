@@ -4,7 +4,18 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import FirstScreen from '../screens/FirstScreen';
 import SecondScreen from '../screens/SecondScreen';
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  First: undefined;
+  Second: undefined;
+};
+
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends RootStackParamList {}
+  }
+}
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AppNavigation = (): JSX.Element => {
   return (
