@@ -27,4 +27,13 @@ This tutorial uses a series of Git branches to show the progression of the app. 
 The branches are named as follows:
 
 - `step-1` - Initial setup
-  - Add React Navigation
+  - Add [React Navigation](https://reactnavigation.org/docs/getting-started)
+- `step-2` - Layouts with [Flexbox](https://reactnative.dev/docs/flexbox)
+  - Refactoring layout components
+- `step-3` - Simple state management with The useState hook
+- `step-4` - More types of navigation - Tabs and Drawers vs Stacks
+  - Some advice about modals
+- `step-5` - Add state management with [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started)
+- `step-6` - Calling an API with [Axios](https://axios-http.com/docs/intro)
+- `step 7` - Calling an API with [RTK Query](https://redux-toolkit.js.org/tutorials/rtk-query)
+- `step-8` - Add a form with [Formik](https://formik.org/docs/overview)
