@@ -30,10 +30,14 @@ The branches are named as follows:
   - Add [React Navigation](https://reactnavigation.org/docs/getting-started)
 - `step-2` - Layouts with [Flexbox](https://reactnative.dev/docs/flexbox)
   - Refactoring layout components
-- `step-3` - Simple state management with The useState hook
-- `step-4` - More types of navigation - Tabs and Drawers vs Stacks
+- `step-3` - UI Component libraries - [React Native Elements](https://reactnativeelements.com/docs)
+- `step-4` - Simple state management with The useState hook
+- `step-5` - More types of navigation - Tabs and Drawers vs Stacks
   - Some advice about modals
-- `step-5` - Add state management with [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started)
-- `step-6` - Calling an API with [Axios](https://axios-http.com/docs/intro)
-- `step 7` - Calling an API with [RTK Query](https://redux-toolkit.js.org/tutorials/rtk-query)
-- `step-8` - Add a form with [Formik](https://formik.org/docs/overview)
+  - Navigation transitions
+    - Drawer transitions
+    - Stack transitions
+- `step-6` - Add state management with [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started)
+- `step-7` - Calling an API with [Axios](https://axios-http.com/docs/intro)
+- `step 8` - Calling an API with [RTK Query](https://redux-toolkit.js.org/tutorials/rtk-query)
+- `step-9` - Add a form with [Formik](https://formik.org/docs/overview)
