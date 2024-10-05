@@ -27,3 +27,4 @@ This tutorial uses a series of Git branches to show the progression of the app. 
 The branches are named as follows:
 
 - `step-1` - Initial setup
+  - Add React Navigation
