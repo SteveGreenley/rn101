@@ -2,6 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Icon} from '@rneui/themed';
 import {
   RootStackParamList,
   MainTabParamList,
@@ -26,10 +27,12 @@ const AircraftStackScreen = (): JSX.Element => {
         headerRight: SettingsButton,
       }}>
       <AircraftStack.Screen
+        options={{title: 'Aircraft'}}
         name="AircraftList"
         component={AircraftListScreen}
       />
       <AircraftStack.Screen
+        options={{title: 'Aircraft Detail'}}
         name="AircraftDetail"
         component={AircraftDetailScreen}
       />
@@ -45,20 +48,44 @@ const CarStackScreen = (): JSX.Element => {
       screenOptions={{
         headerRight: SettingsButton,
       }}>
-      <CarStack.Screen name="CarList" component={CarListScreen} />
-      <CarStack.Screen name="CarDetail" component={CarDetailScreen} />
+      <CarStack.Screen
+        options={{title: 'Cars'}}
+        name="CarList"
+        component={CarListScreen}
+      />
+      <CarStack.Screen
+        options={{title: 'Car Detail'}}
+        name="CarDetail"
+        component={CarDetailScreen}
+      />
     </CarStack.Navigator>
   );
 };
 
 const MainTab = createBottomTabNavigator<MainTabParamList>();
 
+const mainTabScreenDescriptions: Record<string, string> = {
+  CarListStack: 'Cars',
+  AircraftListStack: 'Aircraft',
+};
+
+const mainTabScreenOptions = ({route}: any) => ({
+  headerShown: false,
+  title: mainTabScreenDescriptions[route.name],
+  tabBarIcon: ({focused, color, size}: any) => {
+    let iconName = '';
+    if (route.name === 'CarListStack') {
+      iconName = 'car-sport';
+    } else if (route.name === 'AircraftListStack') {
+      iconName = 'airplane';
+    }
+    return <Icon type="ionicon" name={iconName} size={size} color={color} />;
+  },
+});
+
 const MainTabScreen = (): JSX.Element => {
   return (
-    <MainTab.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}>
+    <MainTab.Navigator screenOptions={mainTabScreenOptions}>
       <MainTab.Screen name="CarListStack" component={CarStackScreen} />
       <MainTab.Screen
         name="AircraftListStack"
@@ -79,14 +106,14 @@ const AppNavigation = (): JSX.Element => {
           options={{headerShown: false}}
           component={MainTabScreen}
         />
-        <RootStack.Screen
-          name="ColorChoiceModal"
-          component={ColorChoiceScreen}
-        />
         <RootStack.Group
           screenOptions={{
             presentation: 'modal',
           }}>
+          <RootStack.Screen
+            name="ColorChoiceModal"
+            component={ColorChoiceScreen}
+          />
           <RootStack.Screen name="AboutModal" component={AboutScreen} />
           <RootStack.Screen name="SettingsModal" component={SettingsScreen} />
         </RootStack.Group>
