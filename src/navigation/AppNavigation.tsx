@@ -72,7 +72,7 @@ const mainTabScreenDescriptions: Record<string, string> = {
 const mainTabScreenOptions = ({route}: any) => ({
   headerShown: false,
   title: mainTabScreenDescriptions[route.name],
-  tabBarIcon: ({focused, color, size}: any) => {
+  tabBarIcon: ({color, size}: any) => {
     let iconName = '';
     if (route.name === 'CarListStack') {
       iconName = 'car-sport';
