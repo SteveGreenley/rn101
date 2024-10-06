@@ -33,7 +33,7 @@ The branches are named as follows:
 - `step-4` - UI Component libraries - [React Native Elements](https://reactnativeelements.com/docs)
 - `step-5` - Simple state management with The useState hook
 - `step-6` - More types of navigation - Tabs and Drawers vs Stacks
-  - Some advice about modals
+  - Some advice about modals - consider using react navigation rather than a separate library
   - Navigation transitions
     - Drawer transitions
     - Stack transitions
