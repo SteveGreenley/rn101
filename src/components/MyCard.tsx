@@ -1,12 +1,19 @@
 import React from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 
+type MyCardProps = {
+  headerText: string;
+  bodyText: string;
+  buttonText: string;
+  onPress: () => void;
+};
+
 const MyCard = ({
   headerText,
   bodyText,
   buttonText,
   onPress,
-}: any): JSX.Element => {
+}: MyCardProps): JSX.Element => {
   return (
     <View style={styles.contentCard}>
       <View style={styles.cardHeader}>
