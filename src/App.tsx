@@ -1,8 +1,15 @@
 import * as React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {Platform} from 'react-native';
+import {Platform, UIManager} from 'react-native';
 import {lightColors, createTheme, ThemeProvider} from '@rneui/themed';
 import AppNavigation from './navigation/AppNavigation';
+
+if (
+  Platform.OS === 'android' &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 const theme = createTheme({
   lightColors: {
