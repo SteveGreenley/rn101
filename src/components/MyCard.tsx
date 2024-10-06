@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {Button, Card, Icon} from '@rneui/themed';
+import {Button, Card} from '@rneui/themed';
 
 type MyCardProps = {
   headerText?: string;
