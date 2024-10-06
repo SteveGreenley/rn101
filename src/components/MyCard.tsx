@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
+import {Button, Card} from '@rneui/themed';
 
 type MyCardProps = {
   headerText?: string;
@@ -15,17 +16,18 @@ const MyCard = ({
   onPress,
 }: MyCardProps): JSX.Element => {
   return (
-    <View style={styles.contentCard}>
+    <Card>
       {headerText && (
-        <View style={styles.cardHeader}>
-          <Text style={styles.headerText}>{headerText}</Text>
-        </View>
+        <>
+          <Card.Title>{headerText}</Card.Title>
+          <Card.Divider />
+        </>
       )}
       <View style={styles.cardBody}>
         <Text>{bodyText}</Text>
-        <Button onPress={onPress} title={buttonText} />
       </View>
-    </View>
+      <Button onPress={onPress} title={buttonText} />
+    </Card>
   );
 };
 
@@ -39,11 +41,6 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 18,
     fontWeight: 'bold',
-  },
-  cardHeader: {
-    borderBottomWidth: 1,
-    borderBottomColor: 'grey',
-    padding: 10,
   },
   cardBody: {
     padding: 10,
