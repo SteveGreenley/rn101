@@ -8,7 +8,6 @@ const SecondScreen = (): JSX.Element => {
   return (
     <View style={styles.container}>
       <MyCard
-        headerText="The Second Screen Header"
         bodyText="The Second Screen Body. Elit cupidatat eu labore sunt consectetur ullamco amet duis mollit non. Amet enim duis ad officia minim elit ad tempor proident laboris deserunt qui excepteur."
         buttonText="Go Back"
         onPress={goBack}

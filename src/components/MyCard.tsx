@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 
 type MyCardProps = {
-  headerText: string;
+  headerText?: string;
   bodyText: string;
   buttonText: string;
   onPress: () => void;
@@ -16,9 +16,11 @@ const MyCard = ({
 }: MyCardProps): JSX.Element => {
   return (
     <View style={styles.contentCard}>
-      <View style={styles.cardHeader}>
-        <Text style={styles.headerText}>{headerText}</Text>
-      </View>
+      {headerText && (
+        <View style={styles.cardHeader}>
+          <Text style={styles.headerText}>{headerText}</Text>
+        </View>
+      )}
       <View style={styles.cardBody}>
         <Text>{bodyText}</Text>
         <Button onPress={onPress} title={buttonText} />
