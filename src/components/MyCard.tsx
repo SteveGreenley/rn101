@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {Button, Card} from '@rneui/themed';
+import {Button, Card, Icon} from '@rneui/themed';
 
 type MyCardProps = {
   headerText?: string;
@@ -26,7 +26,9 @@ const MyCard = ({
       <View style={styles.cardBody}>
         <Text>{bodyText}</Text>
       </View>
-      <Button onPress={onPress} title={buttonText} />
+      <Button size="md" radius="sm" type="solid" onPress={onPress}>
+        {buttonText}
+      </Button>
     </Card>
   );
 };
