@@ -1,5 +1,5 @@
-import {NavigatorScreenParams} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import { NavigatorScreenParams } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type AircraftStackParamList = {
   AircraftList: undefined;
@@ -36,8 +36,13 @@ export type MainTabParamList = {
   AircraftListStack: NavigatorScreenParams<AircraftStackParamList>;
 };
 
+export type DrawerParamList = {
+  MainTab: NavigatorScreenParams<MainTabParamList>;
+  About: undefined;
+};
+
 export type RootStackParamList = {
-  MainTab: undefined;
+  Drawer: NavigatorScreenParams<DrawerParamList>;
   ColorChoiceModal: undefined;
   AboutModal: undefined;
   SettingsModal: undefined;
@@ -45,6 +50,6 @@ export type RootStackParamList = {
 
 declare global {
   namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList {}
+    interface RootParamList extends RootStackParamList { }
   }
 }

@@ -6,6 +6,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Icon } from '@rneui/themed';
 import {
   RootStackParamList,
+  DrawerParamList,
   MainTabParamList,
   CarStackParamList,
   AircraftStackParamList,
@@ -110,7 +111,7 @@ const MainTabScreen = (): JSX.Element => {
   );
 };
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<DrawerParamList>();
 
 const DrawerScreen = (): JSX.Element => {
   return (
