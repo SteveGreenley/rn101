@@ -1,8 +1,9 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Icon} from '@rneui/themed';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Icon } from '@rneui/themed';
 import {
   RootStackParamList,
   MainTabParamList,
@@ -10,6 +11,7 @@ import {
   AircraftStackParamList,
 } from './types';
 import SettingsButton from '../components/SettingsButton';
+import DrawerButton from '../components/DrawerButton';
 import CloseButton from '../components/CloseButton';
 import AboutScreen from '../screens/AboutScreen';
 import SettingsScreen from '../screens/SettingsScreen';
@@ -28,12 +30,18 @@ const AircraftStackScreen = (): JSX.Element => {
         headerRight: SettingsButton,
       }}>
       <AircraftStack.Screen
-        options={{title: 'Aircraft'}}
+        options={{
+          title: 'Aircraft',
+          headerLeft: DrawerButton,
+        }}
         name="AircraftList"
         component={AircraftListScreen}
       />
       <AircraftStack.Screen
-        options={{title: 'Aircraft Detail'}}
+        options={{
+          headerBackVisible: true,
+          title: 'Aircraft Detail',
+        }}
         name="AircraftDetail"
         component={AircraftDetailScreen}
       />
@@ -50,12 +58,18 @@ const CarStackScreen = (): JSX.Element => {
         headerRight: SettingsButton,
       }}>
       <CarStack.Screen
-        options={{title: 'Cars'}}
+        options={{
+          headerLeft: DrawerButton,
+          title: 'Cars',
+        }}
         name="CarList"
         component={CarListScreen}
       />
       <CarStack.Screen
-        options={{title: 'Car Detail'}}
+        options={{
+          headerBackVisible: true,
+          title: 'Car Detail',
+        }}
         name="CarDetail"
         component={CarDetailScreen}
       />
@@ -70,10 +84,10 @@ const mainTabScreenDescriptions: Record<string, string> = {
   AircraftListStack: 'Aircraft',
 };
 
-const mainTabScreenOptions = ({route}: any) => ({
+const mainTabScreenOptions = ({ route }: any) => ({
   headerShown: false,
   title: mainTabScreenDescriptions[route.name],
-  tabBarIcon: ({color, size}: any) => {
+  tabBarIcon: ({ color, size }: any) => {
     let iconName = '';
     if (route.name === 'CarListStack') {
       iconName = 'car-sport';
@@ -96,6 +110,24 @@ const MainTabScreen = (): JSX.Element => {
   );
 };
 
+const Drawer = createDrawerNavigator();
+
+const DrawerScreen = (): JSX.Element => {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen
+        name="MainTab"
+        options={{ headerShown: false }}
+        component={MainTabScreen}
+      />
+      <Drawer.Screen
+        name="About"
+        component={AboutScreen}
+      />
+    </Drawer.Navigator>
+  );
+};
+
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const AppNavigation = (): JSX.Element => {
@@ -103,9 +135,9 @@ const AppNavigation = (): JSX.Element => {
     <NavigationContainer>
       <RootStack.Navigator>
         <RootStack.Screen
-          name="MainTab"
-          options={{headerShown: false}}
-          component={MainTabScreen}
+          name="Drawer"
+          options={{ headerShown: false }}
+          component={DrawerScreen}
         />
         <RootStack.Group
           screenOptions={{

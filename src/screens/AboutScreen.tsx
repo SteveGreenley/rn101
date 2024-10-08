@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 const AboutScreen = (): JSX.Element => {
   return (
     <View style={styles.container}>
-      <Text>AboutScreen - make this a flipover!</Text>
+      <Text>AboutScreen</Text>
     </View>
   );
 };
