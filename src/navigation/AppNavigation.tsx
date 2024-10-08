@@ -10,6 +10,7 @@ import {
   AircraftStackParamList,
 } from './types';
 import SettingsButton from '../components/SettingsButton';
+import CloseButton from '../components/CloseButton';
 import AboutScreen from '../screens/AboutScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import ColorChoiceScreen from '../screens/ColorChoiceScreen';
@@ -109,6 +110,7 @@ const AppNavigation = (): JSX.Element => {
         <RootStack.Group
           screenOptions={{
             presentation: 'modal',
+            headerRight: CloseButton,
           }}>
           <RootStack.Screen
             name="ColorChoiceModal"
