@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "make": "Ferrari",
+        "model": "488 GTB",
+        "year_of_first_manufacture": 2015,
+        "image_url": "https://www.ultimatecarpage.com/images/car/6118/Ferrari-488-GTB-54811.jpg"
+    },
+    {
+        "id": 2,
+        "make": "Lamborghini",
+        "model": "Aventador",
+        "year_of_first_manufacture": 2011,
+        "image_url": "https://images.hgmsites.net/hug/lamborghini-aventador-lp700-4_100342024_h.jpg"
+    },
+    {
+        "id": 3,
+        "make": "McLaren",
+        "model": "720S",
+        "year_of_first_manufacture": 2017,
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/23/2018_McLaren_720S_V8_S-A_4.0.jpg"
+    },
+    {
+        "id": 4,
+        "make": "Porsche",
+        "model": "911 Turbo S",
+        "year_of_first_manufacture": 1975,
+        "image_url": "https://911-guide.com/wp-content/uploads/2015/02/1975-porsche-930-1.jpg"
+    },
+    {
+        "id": 5,
+        "make": "Bugatti",
+        "model": "Chiron",
+        "year_of_first_manufacture": 2016,
+        "image_url": "https://car-images.bauersecure.com/wp-images/884/nohcir-004.jpg"
+    },
+    {
+        "id": 6,
+        "make": "Aston Martin",
+        "model": "DB11",
+        "year_of_first_manufacture": 2016,
+        "image_url": "https://car-images.bauersecure.com/wp-images/12005/z11bd-014.jpg"
+    },
+    {
+        "id": 7,
+        "make": "Lexus",
+        "model": "LFA",
+        "year_of_first_manufacture": 2010,
+        "image_url": "https://car-images.bauersecure.com/wp-images/5714/0000c396360f-4c02-4995-8.jpg"
+    },
+    {
+        "id": 8,
+        "make": "Chevrolet",
+        "model": "Corvette C8",
+        "year_of_first_manufacture": 2020,
+        "image_url": "https://hips.hearstapps.com/hmg-prod/images/screen-shot-2019-10-03-at-9-21-22-am-1570109240.png"
+    },
+    {
+        "id": 9,
+        "make": "Nissan",
+        "model": "GT-R",
+        "year_of_first_manufacture": 2007,
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7c/2018_Nissan_GT-R_Premium_in_Super_Silver%2C_Front_Right%2C_10-11-2022.jpg"
+    },
+    {
+        "id": 10,
+        "make": "Audi",
+        "model": "R8",
+        "year_of_first_manufacture": 2006,
+        "image_url": "https://mrsportscars.com/wp-content/uploads/2017/09/Audi-R8-2006-Photo-31.jpg"
+    }
+]

@@ -1,4 +1,4 @@
-import { NavigatorScreenParams } from '@react-navigation/native';
+import { NavigatorScreenParams, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type AircraftStackParamList = {
@@ -18,15 +18,21 @@ export type AircraftDetailScreenNavigationProps = NativeStackNavigationProp<
 
 export type CarStackParamList = {
   CarList: undefined;
-  CarDetail: undefined;
+  CarDetail: { carId: number };
 };
+
 
 export type CarListScreenNavigationProps = NativeStackNavigationProp<
   CarStackParamList,
   'CarList'
 >;
 
-export type CarDetailScreenNavigationProps = NativeStackNavigationProp<
+export type CarDetailScreenNavigationProp = NativeStackNavigationProp<
+  CarStackParamList,
+  'CarDetail'
+>;
+
+export type CarDetailScreenRouteProp = RouteProp<
   CarStackParamList,
   'CarDetail'
 >;

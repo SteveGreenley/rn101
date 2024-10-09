@@ -1,19 +1,36 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {CarListScreenNavigationProps} from '../navigation/types';
+import { View, StyleSheet, FlatList } from 'react-native';
+import { ListItem } from '@rneui/themed';
+import { useNavigation } from '@react-navigation/native';
+import { CarListScreenNavigationProps } from '../navigation/types';
+import { type Car } from '../../data/types';
+import cars from '../../data/cars.json';
 
 const CarListScreen = (): JSX.Element => {
-  const {navigate} = useNavigation<CarListScreenNavigationProps>();
+  const { navigate } = useNavigation<CarListScreenNavigationProps>();
 
-  const goToCarDetail = () => {
-    navigate('CarDetail');
+  const goToCarDetail = (car: Car) => () => {
+    navigate('CarDetail', { carId: car.id });
+  };
+
+  const renderItem = ({ item }: { item: Car }) => {
+    return (
+      <ListItem bottomDivider onPress={goToCarDetail(item)}>
+        <ListItem.Content>
+          <ListItem.Title>{`${item.make} ${item.model}`}</ListItem.Title>
+          <ListItem.Subtitle>{item.year_of_first_manufacture}</ListItem.Subtitle>
+        </ListItem.Content>
+        <ListItem.Chevron />
+      </ListItem>
+    );
   };
 
   return (
     <View style={styles.container}>
-      <Text>CarListScreen</Text>
-      <Button title="Go to Car Details" onPress={goToCarDetail} />
+      <FlatList<Car>
+        data={cars}
+        renderItem={renderItem}
+      />
     </View>
   );
 };
@@ -21,8 +38,6 @@ const CarListScreen = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
 
