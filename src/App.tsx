@@ -3,6 +3,8 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Platform, UIManager} from 'react-native';
 import {lightColors, createTheme, ThemeProvider} from '@rneui/themed';
 import AppNavigation from './navigation/AppNavigation';
+import {store} from './app/store';
+import {Provider} from 'react-redux';
 
 if (
   Platform.OS === 'android' &&
@@ -22,11 +24,13 @@ const theme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <SafeAreaProvider>
-        <AppNavigation />
-      </SafeAreaProvider>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <SafeAreaProvider>
+          <AppNavigation />
+        </SafeAreaProvider>
+      </ThemeProvider>
+    </Provider>
   );
 }
 

@@ -1,16 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { Image } from '@rneui/themed';
-import { CarDetailScreenNavigationProp, CarDetailScreenRouteProp } from '../navigation/types';
-import cars from '../../data/cars.json';
+import React, {useEffect, useState} from 'react';
+import {View, Text, StyleSheet} from 'react-native';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {Image} from '@rneui/themed';
+import {
+  CarDetailScreenNavigationProp,
+  CarDetailScreenRouteProp,
+} from '../navigation/types';
+// import cars from '../../data/cars.json';
+import type {RootState} from '../app/store';
+import {useSelector} from 'react-redux';
 
 const CarDetailScreen = (): JSX.Element => {
   const [isFillScreen, setIsFillScreen] = useState(false);
-  const { setOptions } = useNavigation<CarDetailScreenNavigationProp>();
-  const { params } = useRoute<CarDetailScreenRouteProp>();
-  const { carId } = params;
-  const car = cars.find((c) => c.id === carId);
+  const {setOptions} = useNavigation<CarDetailScreenNavigationProp>();
+  const {params} = useRoute<CarDetailScreenRouteProp>();
+  const {carId} = params;
+
+  const car = useSelector((state: RootState) =>
+    state.carCollection.cars.find(c => c.id === carId),
+  );
 
   const toggleFillScreen = () => {
     setIsFillScreen(!isFillScreen);
@@ -19,7 +27,7 @@ const CarDetailScreen = (): JSX.Element => {
   useEffect(() => {
     if (car) {
       setTimeout(() => {
-        setOptions({ title: `${car.make} ${car.model}` });
+        setOptions({title: `${car.make} ${car.model}`});
       }, 1000);
     }
   }, [car, setOptions]);
@@ -34,7 +42,8 @@ const CarDetailScreen = (): JSX.Element => {
             resizeMode={isFillScreen ? 'cover' : 'contain'}
             onPress={toggleFillScreen}
           />
-          <Text style={styles.yearText}>{`${car.year_of_first_manufacture}`}</Text>
+          <Text
+            style={styles.yearText}>{`${car.year_of_first_manufacture}`}</Text>
         </>
       )}
     </View>
