@@ -31,22 +31,17 @@ const CarListScreen = (): JSX.Element => {
     navigate('CarDetail', {carId: car.id});
   };
 
-  type voidFunction = () => void;
-
-  // eslint-disable-next-line react/no-unstable-nested-components
-  const swipeRightContent = (itemId: number) => (reset: voidFunction) =>
-    (
-      <Button
-        title="Delete"
-        onPress={() => {
-          reset();
-          LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-          dispatch(removeCar(itemId));
-        }}
-        icon={{name: 'delete', color: 'white'}}
-        buttonStyle={styles.deleteButton}
-      />
-    );
+  const swipeRightContent = (itemId: number) => (
+    <Button
+      title="Delete"
+      onPress={() => {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+        dispatch(removeCar(itemId));
+      }}
+      icon={{name: 'delete', color: 'white'}}
+      buttonStyle={styles.deleteButton}
+    />
+  );
 
   const renderItem = ({item}: {item: Car}) => {
     return (
