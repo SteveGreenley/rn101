@@ -1,11 +1,14 @@
 import React from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
-import {ListItem} from '@rneui/themed';
+import {View, StyleSheet, FlatList, LayoutAnimation} from 'react-native';
+import {ListItem, Button} from '@rneui/themed';
 import {useNavigation} from '@react-navigation/native';
 import {CarListScreenNavigationProps} from '../navigation/types';
 import type {RootState} from '../app/store';
-import {useSelector} from 'react-redux';
-import type {Car} from '../features/carCollection/carCollectionSlice';
+import {useSelector, useDispatch} from 'react-redux';
+import {
+  type Car,
+  removeCar,
+} from '../features/carCollection/carCollectionSlice';
 
 const NoCars = () => {
   return (
@@ -21,16 +24,36 @@ const NoCars = () => {
 
 const CarListScreen = (): JSX.Element => {
   const {navigate} = useNavigation<CarListScreenNavigationProps>();
+  const cars = useSelector((state: RootState) => state.carCollection.cars);
+  const dispatch = useDispatch();
 
   const goToCarDetail = (car: Car) => () => {
     navigate('CarDetail', {carId: car.id});
   };
 
-  const cars = useSelector((state: RootState) => state.carCollection.cars);
+  type voidFunction = () => void;
+
+  // eslint-disable-next-line react/no-unstable-nested-components
+  const swipeRightContent = (itemId: number) => (reset: voidFunction) =>
+    (
+      <Button
+        title="Delete"
+        onPress={() => {
+          reset();
+          LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+          dispatch(removeCar(itemId));
+        }}
+        icon={{name: 'delete', color: 'white'}}
+        buttonStyle={styles.deleteButton}
+      />
+    );
 
   const renderItem = ({item}: {item: Car}) => {
     return (
-      <ListItem bottomDivider onPress={goToCarDetail(item)}>
+      <ListItem.Swipeable
+        rightContent={swipeRightContent(item.id)}
+        bottomDivider
+        onPress={goToCarDetail(item)}>
         <ListItem.Content>
           <ListItem.Title>{`${item.make} ${item.model}`}</ListItem.Title>
           <ListItem.Subtitle>
@@ -38,7 +61,7 @@ const CarListScreen = (): JSX.Element => {
           </ListItem.Subtitle>
         </ListItem.Content>
         <ListItem.Chevron />
-      </ListItem>
+      </ListItem.Swipeable>
     );
   };
 
@@ -59,6 +82,10 @@ const styles = StyleSheet.create({
   },
   subtleText: {
     color: 'lightgrey',
+  },
+  deleteButton: {
+    minHeight: '100%',
+    backgroundColor: 'red',
   },
 });
 
