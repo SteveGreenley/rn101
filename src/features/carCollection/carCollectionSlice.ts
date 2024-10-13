@@ -1,5 +1,5 @@
-import {createSlice} from '@reduxjs/toolkit';
-import type {PayloadAction} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 import cars from '../../../data/cars.json';
 
 export interface Car {
@@ -28,10 +28,13 @@ export const carCollectionSlice = createSlice({
     removeCar: (state, action: PayloadAction<number>) => {
       state.cars = state.cars.filter(car => car.id !== action.payload);
     },
+    resetCars: state => {
+      state.cars = initialState.cars;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const {addCar, removeCar} = carCollectionSlice.actions;
+export const { addCar, removeCar, resetCars } = carCollectionSlice.actions;
 
 export default carCollectionSlice.reducer;

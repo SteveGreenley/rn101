@@ -1,34 +1,42 @@
 import React from 'react';
-import {View, StyleSheet, FlatList, LayoutAnimation} from 'react-native';
-import {ListItem, Button} from '@rneui/themed';
-import {useNavigation} from '@react-navigation/native';
-import {CarListScreenNavigationProps} from '../navigation/types';
-import type {RootState} from '../app/store';
-import {useSelector, useDispatch} from 'react-redux';
+import { View, StyleSheet, FlatList, LayoutAnimation } from 'react-native';
+import { ListItem, Button } from '@rneui/themed';
+import { useNavigation } from '@react-navigation/native';
+import { CarListScreenNavigationProps } from '../navigation/types';
+import type { RootState } from '../app/store';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   type Car,
   removeCar,
+  resetCars,
 } from '../features/carCollection/carCollectionSlice';
 
 const NoCars = () => {
+  const dispatch = useDispatch();
   return (
     <ListItem>
       <ListItem.Content>
-        <ListItem.Title style={styles.subtleText}>
+        <ListItem.Title style={styles.infoText}>
           There are no cars
         </ListItem.Title>
       </ListItem.Content>
+      <Button
+        title="Reset Cars"
+        onPress={() => {
+          dispatch(resetCars());
+        }}
+      />
     </ListItem>
   );
 };
 
 const CarListScreen = (): JSX.Element => {
-  const {navigate} = useNavigation<CarListScreenNavigationProps>();
+  const { navigate } = useNavigation<CarListScreenNavigationProps>();
   const cars = useSelector((state: RootState) => state.carCollection.cars);
   const dispatch = useDispatch();
 
   const goToCarDetail = (car: Car) => () => {
-    navigate('CarDetail', {carId: car.id});
+    navigate('CarDetail', { carId: car.id });
   };
 
   const swipeRightContent = (itemId: number) => (
@@ -38,12 +46,12 @@ const CarListScreen = (): JSX.Element => {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
         dispatch(removeCar(itemId));
       }}
-      icon={{name: 'delete', color: 'white'}}
+      icon={{ name: 'delete', color: 'white' }}
       buttonStyle={styles.deleteButton}
     />
   );
 
-  const renderItem = ({item}: {item: Car}) => {
+  const renderItem = ({ item }: { item: Car }) => {
     return (
       <ListItem.Swipeable
         rightContent={swipeRightContent(item.id)}
@@ -75,8 +83,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  subtleText: {
-    color: 'lightgrey',
+  infoText: {
+    color: 'dodgerblue',
   },
   deleteButton: {
     minHeight: '100%',
