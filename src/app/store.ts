@@ -1,13 +1,49 @@
-import {configureStore} from '@reduxjs/toolkit';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { configureStore, combineReducers, AnyAction } from '@reduxjs/toolkit';
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  PersistConfig,
+} from 'redux-persist';
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import carCollectionReducer from '../features/carCollection/carCollectionSlice';
 
-export const store = configureStore({
-  reducer: {
-    carCollection: carCollectionReducer,
-  },
+export const rootReducers = combineReducers({
+  carCollection: carCollectionReducer,
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof rootReducers>;
+
+const persistConfig: PersistConfig<RootState> = {
+  key: 'root',
+  storage: AsyncStorage,
+  stateReconciler: autoMergeLevel2,
+};
+
+const persistedReducer = persistReducer<RootState, AnyAction>(
+  persistConfig,
+  rootReducers,
+);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      immutableCheck: { warnAfter: 128 },
+      serializableCheck: {
+        warnAfter: 128,
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
+
+
+
