@@ -27,4 +27,16 @@ This tutorial uses a series of Git branches to show the progression of the app. 
 The branches are named as follows:
 
 - `step-1` - Initial setup
-  - Add React Navigation
+  - Add [React Navigation](https://reactnavigation.org/docs/getting-started)
+- `step-2` - Layouts with [Flexbox](https://reactnative.dev/docs/flexbox)
+- `step-3` - Refactoring layout components
+- `step-4` - UI Component libraries - [React Native Elements](https://reactnativeelements.com/docs)
+- `step-5` - Simple state management with The useState hook
+- `step-6` - More types of navigation - Tabs and Drawers vs Stacks
+  - Some advice about modals
+  - Navigation transitions
+    - Drawer transitions
+    - Stack transitions
+- `step-7` - Add state management with [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started)
+- `step-8` - Calling an API with [Axios](https://axios-http.com/docs/intro)
+
