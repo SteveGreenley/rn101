@@ -39,6 +39,4 @@ The branches are named as follows:
     - Stack transitions
 - `step-7` - Add state management with [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started)
 - `step-8` - Calling an API with [Axios](https://axios-http.com/docs/intro)
-For the future...
-- `step 9` - Calling an API with [RTK Query](https://redux-toolkit.js.org/tutorials/rtk-query)
-- `step-10` - Add a form with [Formik](https://formik.org/docs/overview)
+
