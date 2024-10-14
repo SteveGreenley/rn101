@@ -75,3 +75,6 @@ yarn-error.log
 
 # MS Office Temporary files
 ~$*
+
+#API Keys
+/*.apikey.json

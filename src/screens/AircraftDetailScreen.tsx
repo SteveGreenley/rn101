@@ -1,14 +1,30 @@
-import React from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {AircraftDetailScreenNavigationProps} from '../navigation/types';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { useRoute } from '@react-navigation/native';
+import { Image } from '@rneui/themed';
+import { AircraftDetailScreenRouteProp } from '../navigation/types';
 
 const AircraftDetailScreen = (): JSX.Element => {
-  const {goBack} = useNavigation<AircraftDetailScreenNavigationProps>();
+  const [isFillScreen, setIsFillScreen] = useState(false);
+
+  const { params } = useRoute<AircraftDetailScreenRouteProp>();
+  const { description, imageUrl } = params;
+
+  const toggleFillScreen = () => {
+    setIsFillScreen(!isFillScreen);
+  };
+
   return (
     <View style={styles.container}>
-      <Text>AircraftDetailScreen</Text>
-      <Button title="Go back" onPress={goBack} />
+      <Image
+        src={imageUrl}
+        containerStyle={styles.aircraftImage}
+        resizeMode={isFillScreen ? 'cover' : 'contain'}
+        onPress={toggleFillScreen}
+      />
+      <Text
+        style={styles.descriptionText}>{description}</Text>
+
     </View>
   );
 };
@@ -18,6 +34,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  aircraftImage: {
+    width: '100%',
+    flex: 1,
+  },
+  descriptionText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'lightgrey',
   },
 });
 

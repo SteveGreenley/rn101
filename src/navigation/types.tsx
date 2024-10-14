@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type AircraftStackParamList = {
   AircraftList: undefined;
-  AircraftDetail: undefined;
+  AircraftDetail: { imageUrl: string; description: string };
 };
 
 export type AircraftListScreenNavigationProps = NativeStackNavigationProp<
@@ -12,6 +12,11 @@ export type AircraftListScreenNavigationProps = NativeStackNavigationProp<
 >;
 
 export type AircraftDetailScreenNavigationProps = NativeStackNavigationProp<
+  AircraftStackParamList,
+  'AircraftDetail'
+>;
+
+export type AircraftDetailScreenRouteProp = RouteProp<
   AircraftStackParamList,
   'AircraftDetail'
 >;
